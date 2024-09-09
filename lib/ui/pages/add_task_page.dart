@@ -224,7 +224,8 @@ class _AddTaskPageState extends State<AddTaskPage> {
 
   _addTaskToDB() async {
     // Replace this with your actual backend URL
-    final url = Uri.parse('http://localhost:5000/api/tasks');
+    // final url = Uri.parse('http://localhost:5000/api/tasks');
+    final url = Uri.parse('https://flutter-test-backend.vercel.app/api/tasks');
 
     final taskData = {
       'note': _noteController.text,

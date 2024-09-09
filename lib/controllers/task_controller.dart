@@ -8,7 +8,8 @@ class TaskController extends GetxController {
   Future<void> getTasks() async {
     final response =
         // await http.get(Uri.parse('http://localhost:5000/api/tasks'));
-        await http.get(Uri.parse('http://localhost:5000/api/tasks'));
+        await http.get(
+            Uri.parse('https://flutter-test-backend.vercel.app/api/tasks'));
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
       // Convert List<dynamic> to List<Map<String, dynamic>>
@@ -21,7 +22,8 @@ class TaskController extends GetxController {
   void deleteTask(String id) async {
     final response =
         // await http.delete(Uri.parse('http://localhost:5000/api/tasks/$id'));
-        await http.delete(Uri.parse('http://localhost:5000/api/tasks/$id'));
+        await http.delete(
+            Uri.parse('https://flutter-test-backend.vercel.app/api/tasks/$id'));
     if (response.statusCode == 200) {
       taskList.removeWhere((task) => task['_id'] == id);
     } else {
@@ -30,13 +32,18 @@ class TaskController extends GetxController {
   }
 
   void markTaskCompleted(String id) async {
+    // final response = await http.put(
+    //   Uri.parse('http://localhost:5000/api/tasks/$id'),
+    //   body: jsonEncode({'isCompleted': 1}),
+    //   headers: {'Content-Type': 'application/json'},
+    // );
     final response = await http.put(
-      Uri.parse('http://localhost:5000/api/tasks/$id'),
+      Uri.parse('https://flutter-test-backend.vercel.app/api/tasks/$id'),
       body: jsonEncode({'isCompleted': 1}),
       headers: {'Content-Type': 'application/json'},
     );
     if (response.statusCode == 200) {
-      var taskIndex = taskList.indexWhere((task) => task['id'] == id);
+      var taskIndex = taskList.indexWhere((task) => task['_id'] == id);
       if (taskIndex != -1) {
         taskList[taskIndex]['isCompleted'] = 1;
         taskList.refresh();
