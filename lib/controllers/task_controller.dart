@@ -17,11 +17,11 @@ class TaskController extends GetxController {
     }
   }
 
-  void deleteTask(int id) async {
+  void deleteTask(String id) async {
     final response =
         await http.delete(Uri.parse('http://localhost:5000/api/tasks/$id'));
     if (response.statusCode == 200) {
-      taskList.removeWhere((task) => task['id'] == id);
+      taskList.removeWhere((task) => task['_id'] == id);
     } else {
       throw Exception('Failed to delete task');
     }
