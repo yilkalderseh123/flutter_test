@@ -9,7 +9,6 @@ class TaskController extends GetxController {
     final response =
         await http.get(Uri.parse('http://localhost:5000/api/tasks'));
     if (response.statusCode == 200) {
-      print(" RESPONSED DATA");
       var data = jsonDecode(response.body);
       // Convert List<dynamic> to List<Map<String, dynamic>>
       taskList.value = List<Map<String, dynamic>>.from(data);
