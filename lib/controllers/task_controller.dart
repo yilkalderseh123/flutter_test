@@ -7,6 +7,7 @@ class TaskController extends GetxController {
 
   Future<void> getTasks() async {
     final response =
+        // await http.get(Uri.parse('http://localhost:5000/api/tasks'));
         await http.get(Uri.parse('http://localhost:5000/api/tasks'));
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
@@ -19,6 +20,7 @@ class TaskController extends GetxController {
 
   void deleteTask(String id) async {
     final response =
+        // await http.delete(Uri.parse('http://localhost:5000/api/tasks/$id'));
         await http.delete(Uri.parse('http://localhost:5000/api/tasks/$id'));
     if (response.statusCode == 200) {
       taskList.removeWhere((task) => task['_id'] == id);
@@ -27,7 +29,7 @@ class TaskController extends GetxController {
     }
   }
 
-  void markTaskCompleted(int id) async {
+  void markTaskCompleted(String id) async {
     final response = await http.put(
       Uri.parse('http://localhost:5000/api/tasks/$id'),
       body: jsonEncode({'isCompleted': 1}),

@@ -233,7 +233,7 @@ class _HomePageState extends State<HomePage> {
               : _buildBottomSheetButton(
                   label: "Task Completed",
                   onTap: () {
-                    _taskController.markTaskCompleted(task['id']);
+                    _taskController.markTaskCompleted(task['_id']);
                     Get.back();
                   },
                   clr: primaryClr),
