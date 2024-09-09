@@ -11,9 +11,8 @@ class TaskController extends GetxController {
     if (response.statusCode == 200) {
       print(" RESPONSED DATA");
       var data = jsonDecode(response.body);
-      print(data);
-      print(" RESPONSED DATA");
-      taskList = data;
+      // Convert List<dynamic> to List<Map<String, dynamic>>
+      taskList.value = List<Map<String, dynamic>>.from(data);
     } else {
       throw Exception('Failed to load tasks');
     }
